@@ -6,10 +6,10 @@
   , lib
   , stdenv
 }:
+stdenv.mkDerivation (finalAttrs:
 let
-
-in
-stdenv.mkDerivation {
+  out = finalAttrs.finalPackage.out;
+in {
   inherit name src;
   buildInputs = [ruby bundler bundix ];
   buildPhase = ''
@@ -24,5 +24,11 @@ stdenv.mkDerivation {
     cp ./Gemfile.lock $out/Gemfile.lock
     cp ./Gemfile $out/Gemfile
   '';
-}
+
+  passthru = {
+    gemsetPath = "${out}/gemset.nix";
+    gemfilePath = "${out}/Gemfile";
+    gemfileLockPath = "${out}/Gemfile.lock";
+  };
+})
 

@@ -22,17 +22,13 @@
 }:
 let
   buildGemset = callPackage ./ruby_gemset { src = project_root; };
-  gemsetPath = "${buildGemset.outPath}/gemset.nix";
-  lockfilePath = "${buildGemset.outPath}/Gemfile.lock";
-  gemfilePath = "${buildGemset.outPath}/Gemfile";
-
   copyMakefile = callPackage ./copy_makefile { src = ./copy_makefile; };
 
   gems = bundlerEnv {
     name = "dryer-services-gems";
-    gemfile = gemfilePath;
-    gemset = gemsetPath;
-    lockfile = lockfilePath;
+    gemfile = buildGemset.gemfilePath;
+    gemset = buildGemset.gemsetPath;
+    lockfile = buildGemset.gemfileLockPath;
     extraConfigPaths = [gemspec];
   };
 
