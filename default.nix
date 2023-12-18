@@ -26,6 +26,8 @@ let
   lockfilePath = "${buildGemset.outPath}/Gemfile.lock";
   gemfilePath = "${buildGemset.outPath}/Gemfile";
 
+  copyMakefile = callPackage ./copy_makefile { src = ./copy_makefile; };
+
   gems = bundlerEnv {
     name = "dryer-services-gems";
     gemfile = gemfilePath;
@@ -82,6 +84,7 @@ in
       mkdir $out
       ln -s ${wrappedScripts} $out/scripts
       ln -s ${buildGemset} $out/configs
+      ln -s ${copyMakefile} $out/makefiles
     '';
     shellHook = ''
       cp -f result/configs/gemset.nix result/configs/Gemfile.lock .
