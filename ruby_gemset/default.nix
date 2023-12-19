@@ -5,10 +5,12 @@
   , bundix
   , lib
   , stdenv
+  , callPackage
 }:
 stdenv.mkDerivation (finalAttrs:
 let
-  out = finalAttrs.finalPackage.out;
+  package = finalAttrs.finalPackage;
+  out = package.out;
 in {
   inherit name src;
   buildInputs = [ruby bundler bundix ];
@@ -29,6 +31,9 @@ in {
     gemsetPath = "${out}/gemset.nix";
     gemfilePath = "${out}/Gemfile";
     gemfileLockPath = "${out}/Gemfile.lock";
+    tests.suite = (
+      callPackage ../tests/ruby_gemset/test_suite.nix { gemset-nix = package; }
+    );
   };
 })
 
