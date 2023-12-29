@@ -6,6 +6,6 @@ help:
 
 .PHONY: test
 test: ## run tests
-	cd tests/ruby_gemset \
+	cd tests \
 		&& nix-build \
-		&& cd ../..
+		&& cd ..
