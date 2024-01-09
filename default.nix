@@ -1,7 +1,6 @@
 { name ? "ruby-gem-dev-shell"
   # user supplied
   , project_root
-  , gemspec
 
   # from nix packages
   , callPackage
@@ -25,11 +24,11 @@ let
   copyMakefile = callPackage ./copy_makefile { src = ./copy_makefile; };
 
   gems = bundlerEnv {
-    name = "dryer-services-gems";
+    name = "gem-dependencies";
     gemfile = buildGemset.gemfilePath;
     gemset = buildGemset.gemsetPath;
     lockfile = buildGemset.gemfileLockPath;
-    extraConfigPaths = [gemspec];
+    extraConfigPaths = [buildGemset.gemspecPath];
   };
 
   wrappedScripts = (callPackage 
