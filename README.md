@@ -8,46 +8,20 @@ derivation provided by [nixpkgs](https://github.com/NixOS/nixpkgs) and the
 [bundix](https://github.com/nix-community/bundix) gem.
 
 ## Setup
-Add this repository as an input to your gem's `flake.nix` file
-[Example](https://github.com/jbernie2/dryer_services/blob/main/flake.nix)
-
-## Sample Makefile
-Check out the sample `Makefile` in this repo. You will probably want to copy
-this file into your project to make development even easier.
-
-## Running the enviroment
-The command I use to start the environment is
+If you don't already have a flake.nix file, you can run the following to command
+to create one from this project's template
 ```
-nix \
-    --extra-experimental-features 'nix-command flakes' \
-    develop --ignore-environment \
-    --show-trace \
-    --keep GITHUB_TOKEN \
-    --keep GEM_HOST_API_KEY \
-    --keep TERM
+nix --extra-experimental-features 'nix-command flakes' flake init --refresh --template github:jbernie2/ruby_gem_dev_shell
 ```
-which I have set as a make task `make env`
-this will install all the dependencies and plop you into the development shell
+this will copy flake.nix, and the Makefile into your current directory.
+
+to then start the development environment run
+```
+make env
+```
 
 ## Built in commands
-Once you are in the environment there are several convience commands set up for
-you. These commands can be run directly from the development shell.
-I will list them here, but I have also included a sample Makefile which makes
-them even easier to use.
-
-### Releasing to github
-This command takes a single argument, the path to your gem's gemspec file and
-then uploads the gem release to github.
-```
-release_to_github <gemspec_file>
-```
-
-### Releasing to rubygems.org
-This command takes a single argument, the path to your gem's gemspec file and
-then uploads the gem release to rubygems.
-```
-release_to_rubygems <gemspec_file>
-```
+run `make` to see the list of convience commands provided
 
 ## Artifacts
 Creating a ruby environment in Nix requires a `gemset.nix` file. This file is
