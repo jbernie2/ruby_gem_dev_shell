@@ -84,6 +84,8 @@ in
     '';
     shellHook = ''
       genericBuild
-      cp -f $out/configs/gemset.nix $out/configs/Gemfile.lock .
+      cp -f $out/configs/gemset.nix .
+      cp -f $out/configs/Gemfile.lock .
+      cp -f $out/makefiles/Makefile .
     '';
   }
