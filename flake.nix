@@ -9,7 +9,7 @@
           Thanks for using ruby gem dev shell.
           Run the following command to get started:
 
-          nix --extra-experimental-features 'nix-command flakes' develop
+          make env
         '';
       };
       default = ruby_gem;
