@@ -76,12 +76,14 @@ in
       wrappedScripts
     ];
     buildPhase = ''
-      mkdir $out
-      ln -s ${wrappedScripts} $out/scripts
-      ln -s ${buildGemset} $out/configs
-      ln -s ${copyMakefile} $out/makefiles
+      rm -rf $out
+      mkdir -p $out
+      ln -sf ${wrappedScripts} $out/scripts
+      ln -sf ${buildGemset} $out/configs
+      ln -sf ${copyMakefile} $out/makefiles
     '';
     shellHook = ''
-      cp -f result/configs/gemset.nix result/configs/Gemfile.lock .
+      genericBuild
+      cp -f $out/configs/gemset.nix $out/configs/Gemfile.lock .
     '';
   }
