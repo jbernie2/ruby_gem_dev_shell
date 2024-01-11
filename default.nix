@@ -21,7 +21,7 @@
 }:
 let
   buildGemset = callPackage ./ruby_gemset { src = project_root; };
-  copyMakefile = callPackage ./copy_makefile { src = ./copy_makefile; };
+  copyMakefile = callPackage ./copy_makefile { src = ./flake_templates; };
 
   gems = bundlerEnv {
     name = "gem-dependencies";
