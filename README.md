@@ -20,13 +20,17 @@ to then start the development environment run
 make env
 ```
 
+## Artifacts
+Creating a ruby environment in Nix requires a `gemset.nix` file. This file is
+essentially a nix-compatable version of `Gemfile.lock`. Runing `make env`
+will generate this file for you. It is advisable to commit this file to git.
+
 ## Built in commands
 run `make` to see the list of convience commands provided
 
-## Artifacts
-Creating a ruby environment in Nix requires a `gemset.nix` file. This file is
-esstentially a nix-compaitable version of `Gemfile.lock`. Starting the shell
-will generate this file for you. It is advisable to commit this file to git.
+## Updating Dependencies
+Updating or adding dependencies, either to the Gemfile or the .gemspec file,
+requires exiting the environment and re-running `make env`
 
 ## Contributing
 Please create a github issue to report any problems.
