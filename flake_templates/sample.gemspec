@@ -21,6 +21,8 @@ Gem::Specification.new do |spec|
     '.github/*.md',
     'Gemfile'
   ]
-  #spec.add_dependency "depedency name", "~> 1.10"
-  #spec.add_development_dependency "development dependency name", "~> 3.10"
+
+  spec.add_dependency "zeitwerk", "~> 2.6"
+  spec.add_development_dependency "rspec", "~> 3.10"
+  spec.add_development_dependency "debug", "~> 1.8"
 end
